@@ -1,0 +1,123 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  background: url("img/background-chat.png"), linear-gradient(252.09deg, #A0A1F1 35.26%, #E79BDC 99.66%);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  --color1: white;
+  --color2: #9899FF;
+  --color3: #E1E2FF;
+}
+body {
+  margin: 0;
+}
+.default_container {
+    margin:auto;
+    max-width: 980px;
+}
+
+.header_bg {
+  height: 80px;
+  width: 100%;
+  background-color: var(--color1);
+  margin-bottom: 30px;
+}
+
+.construct_graph_section {
+  font-size: 28px;
+  background-color: var(--color1);
+  border-radius: 20px;
+  min-height: 400px;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.construct_graph_section_left {
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+  max-width: 50%;
+}
+.construct_graph_section_left_num {
+  display: flex;
+  gap:10px;
+}
+.construct_graph_section_left_num > div {
+  font-size: 18px;
+}
+.construct_graph_section_left_num > input {
+  padding: 4px;
+  width: 30px;
+}
+.construct_graph_section_left_textarea {
+  display: flex;
+}
+.construct_graph_section_left_buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+.construct_graph_section_left_buttons > button {
+}
+
+textarea {
+  resize: none;
+  outline: none;
+  min-width: 10px;
+}
+textarea:focus-visible {
+  border-radius: 0;
+}
+.rownr {
+  font-size: 18px;
+  overflow-y: hidden;
+  background-color: var(--color2);
+  color: white;
+  text-align: right;
+  vertical-align:top;
+  z-index: 0;
+  min-width: 30px;
+}
+.txt {
+  font-size: 18px;
+  background: var(--color3);
+  z-index: 0
+}
+button {
+  font-family: inherit;
+  font-size: 18px;
+  background-color: var(--color3);
+  color: var(--color1);
+  font-weight: 600;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+}
+button:hover {
+  background-color: var(--color2);
+}
+.zagolovok {
+  font-size: 40px;
+  color: var(--color1);
+  margin: 0;
+}
+
+.construct_graph_section_right {
+  width: 200px;
+  height: 200px;
+}
+.construct_graph_img {
+  width: 200px;
+  height:200px;
+}
