@@ -1,10 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { URL_PAINT, URL_SHOW } from "../api/axios";
 import axios from "../api/axios";
 
 const NavHeader = () => {
     
     var cntline;
+
+    useEffect(() => {
+        const a = document.querySelector(".graph_nodes_count").value = 1
+        get_graph()
+    }, [])
+
+    // const [count, setCount] = useState(0)
+    // const [countInTimeout, setCountInTimeout] = useState(0);
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //       setCountInTimeout(count); // count is 0 here
+          
+    //     }, 3000).then(() => {setCount(5),
+    //         console.log("qwe")
+    // });
+    //     console.log("qwe") // Update count to be 5 after timeout is scheduled
+    //   }, [count]);
 	
     function selectionchanged(obj)
     {
@@ -72,36 +89,49 @@ const NavHeader = () => {
         }
         return txt.split('\n').length + 1
     }
-    async function get_graph(obj) {
-        var text = obj.target.value
+    function matrix(n) {
+        return Array.from({
+          // generate array of length m
+          length: n
+          // inside map function generate array of size n
+          // and fill it with `0`
+        }, () => new Array(n).fill(0));
+      };
+      
+    async function get_graph(url) {
+        var n = Number(document.querySelector('.graph_nodes_count').value)
+        var mat = matrix(n)
+        var textlines = document.querySelector('.txt').value.split("\n")
+
+        textlines.forEach(el => {
+            var nodes = el.split(" ")
+            if(nodes.length == 2 && nodes[0] != '' && nodes[1] != '' && nodes[0] != nodes[1]) {
+                console.log(nodes)
+                var n1 = Number(nodes[0])
+                var n2 = Number(nodes[1])
+                try {
+                    mat[n1][n2] = 1
+                    mat[n2][n1] = 1
+                } catch(err) {
+                    console.log(err)
+                }
+            }
+        });
+        console.log(mat)
         try {
-            const response = await axios.post(URL_SHOW, JSON.stringify([[0]]), {
+            
+            const response = await axios.post(url, JSON.stringify(mat),
+            {
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            
-            }, {
-                responseType: 'blob'
+            }).then(res => {
+                console.log(res)
+                const src = "data:image/png;base64," + res.data.img;
+                document.querySelector('.construct_graph_img').src = src
             })
-            console.log(response)
-            const convertBlobToBase64 = async (blob) => { // blob data
-            return await blobToBase64(blob);
-            }
+        
             
-            const blobToBase64 = blob => new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(blob);
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = error => reject(error);
-            });
-            console.log(response.data)
-            document.getElementsByClassName('construct_graph_img').src =  URL.createObjectURL(new Blob([response.data], { type: "image/png" }))
-
-            //console.log(new Blob(response.data.img));
-            //document.getElementsByClassName('construct_graph_img').src = "data:image/jpg;base64," + window.btoa(response.data)
-            //a = image
-            // console.log(a)
-            console.log(document.getElementsByClassName('construct_graph_img'))
         } catch (error) {
             console.error(error);
         }
@@ -120,18 +150,18 @@ const NavHeader = () => {
                     <div className="construct_graph_section_left">
                         <div className="construct_graph_section_left_num">
                             <div>Кол-во вершин</div>
-                            <input/>
+                            <input className="graph_nodes_count" type="number" min="1" step="1" onChange={() => get_graph(URL_SHOW)}/>
                         </div>
                         <div className="construct_graph_section_left_textarea">
                             <textarea className="rownr" rows="20" cols="1" value="1" readOnly/>
-                            <textarea className="txt" rows="20" cols="150" nowrap="nowrap" wrap="off" autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" onClick={selectionchanged} onInput={input_changed} onScroll={scroll_changed} onChange={get_graph}/>
+                            <textarea className="txt" rows="20" nowrap="nowrap" wrap="off" autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" onClick={selectionchanged} onInput={input_changed} onScroll={scroll_changed} onChange={() =>get_graph(URL_SHOW)}/>
                         </div>
                         <div className="construct_graph_section_left_buttons">
-                            <button>Раскрасить</button>
+                            <button onClick={() => get_graph(URL_PAINT)}>Раскрасить</button>
                         </div>
                     </div>
                     <div className="construct_graph_section_right">
-                        <img alt="no" className="construct_graph_img"/>
+                        <img alt="no" id="grapth_img" className="construct_graph_img"/>
                     </div>
                 </section>
             </div>
