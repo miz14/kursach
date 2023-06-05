@@ -15,6 +15,8 @@
   --color1: white;
   --color2: #9899FF;
   --color3: #E1E2FF;
+  --color4: #6366fa;
+  --color5: #6363a1;
 }
 body {
   margin: 0;
@@ -23,11 +25,14 @@ body {
     margin:auto;
     max-width: 980px;
 }
-
+p {
+  margin: 0;
+}
 .header_bg {
   height: 80px;
   width: 100%;
-  background-color: var(--color1);
+  background-color: var(--color5);
+  
   margin-bottom: 30px;
 }
 
@@ -41,24 +46,34 @@ body {
   flex-direction: row;
   justify-content: space-between;
   gap: 20px;
+  margin-bottom: 60px;
 }
-
 .construct_graph_section_left {
   display: flex;
   flex-direction: column;
   gap:10px;
   width: 100%;
 }
-.construct_graph_section_left_num {
+.construct_graph_section_left_param {
   display: flex;
+  flex-direction: column;
   gap:10px;
 }
-.construct_graph_section_left_num > div {
+.construct_graph_section_left_param > div {
   font-size: 18px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
 }
-.construct_graph_section_left_num > input {
+.construct_graph_section_left_param > div > p {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+}
+.construct_graph_section_left_param > div > input {
   padding: 4px;
-  width: 30px;
+  width: 40%;
 }
 .construct_graph_section_left_textarea {
   display: flex;
@@ -67,6 +82,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: end;
+  gap:10px;
 }
 .construct_graph_section_left_buttons > button {
 }
@@ -75,6 +91,7 @@ textarea {
   resize: none;
   outline: none;
   min-width: 10px;
+  border: 2px solid var(--color2);
 }
 textarea:focus-visible {
   border-radius: 0;
@@ -97,15 +114,18 @@ textarea:focus-visible {
 button {
   font-family: inherit;
   font-size: 18px;
-  background-color: var(--color3);
-  color: var(--color1);
+  background-color: var(--color1);
+  color: var(--color4);
   font-weight: 600;
   padding: 10px;
   border: none;
   border-radius: 10px;
+  border: 2px solid var(--color2);
+  transition: 0.2s;
 }
 button:hover {
   background-color: var(--color2);
+  color: var(--color1);
 }
 .zagolovok {
   font-size: 40px;
@@ -115,13 +135,44 @@ button:hover {
 
 .construct_graph_section_right {
   display: flex;
+  flex-direction: column;
+  gap:10px;
   width: 100%;
-  border: 1px solid var(--color2);
+}
+.construct_graph_section_right > img {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 2px solid var(--color2);
 }
 .construct_graph_img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+}
+
+.header_nav {
+  display: flex;
+  height: 80px;
+  gap:4%;
+  
+  align-items: center;
+  font-size: 24px;
+  font-weight: 600;
+}
+.header_navlink {
+  padding: 10px;
+  color: var(--color1);
+  text-decoration: none;
+  transition: ease-in-out 0.2s;
+}
+.header_navlink:hover {
+  transform: translate(0px, 3px);
+}
+
+#paint_graph_status {
+  font-size: 16px;
+  align-self: center;
 }
 
 @media only screen and (max-width: 760px) {

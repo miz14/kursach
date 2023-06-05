@@ -1,8 +1,12 @@
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
-import {NavHeader} from './Routes/navHeader';
+import {Algoritm} from './Routes/Algoritm';
+import {Default} from './Routes/Default';
+import { AboutUs } from './Routes/AboutUs';
 
 const router = createBrowserRouter(createRoutesFromElements(
-  <Route path='/' element={<NavHeader/>}>
+  <Route path='/' element={<Default/>}>
+    <Route index element={<Algoritm/>}/>
+    <Route path='aboutus' element={<AboutUs/>}/>
   </Route> 
 ));
 
