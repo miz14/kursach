@@ -132,6 +132,10 @@ button:hover {
   color: var(--color1);
   margin: 0;
 }
+.self_center {
+  display: flex;
+  justify-content: center;
+}
 
 .construct_graph_section_right {
   display: flex;
@@ -174,10 +178,49 @@ button:hover {
   font-size: 16px;
   align-self: center;
 }
-
+.about_us_persons {
+  display: flex;
+  flex-direction: column;
+  gap:20px;
+}
+.about_us_persons > div {
+  display: flex;
+  justify-content: center;
+}
+.about_us_persons > div > div {
+  height: 300px;
+  width: 300px;
+  padding: 20px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--color1);
+  margin: 0 10px;
+  align-items: center;
+}
+.about_us_persons > div > div > p {
+  font-size: 20px;
+  
+}
+.about_us_persons > div > div >img {
+  
+  height: 85%;
+  width: 90%;
+  /* width: 80%;
+  height: 70%; */
+  object-fit: cover;
+}
 @media only screen and (max-width: 760px) {
   .construct_graph_section {
     flex-direction: column;
+  }
+
+}
+@media only screen and (max-width: 560px) {
+  .about_us_persons > div {
+    flex-direction: column;
+    gap:20px;
+    align-items: center;
   }
 
 }

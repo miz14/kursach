@@ -10,8 +10,6 @@ const Default = () => {
                 <nav className="header_nav">
                     <NavLink className="header_navlink" to="/">Главная</NavLink>
                     <NavLink className="header_navlink" to="/aboutus">О нас</NavLink>
-                    {/* <a href="">Главная</a>
-                    <a href="">О нас</a> */}
                 </nav>
             </div>
         </header>
