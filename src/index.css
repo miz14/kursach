@@ -2,7 +2,6 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: var(--color6);
   color-scheme: light dark;
   background: url("img/background-chat.png"), linear-gradient(252.09deg, #A0A1F1 35.26%, #E79BDC 99.66%);
 
@@ -21,6 +20,7 @@
 }
 body {
   margin: 0;
+  color: var(--color6);
 }
 .default_container {
     margin:auto;
